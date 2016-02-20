@@ -37,6 +37,19 @@ public class SqlClass {
         
     return conn;    
     }
+    public void checkData() {
+        
+        Statement stmt;
+        try {
+            stmt = conn.createStatement();
+            stmt.execute("CREATE TABLE if not exists albums (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, artist VARCHAR, " +
+                     "title VARCHAR, date TEXT, musicStyle VARCHAR, mediaType varchar);");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+    }
+
     //this method will use the included connection and gather a resultset
     public ResultSet getResult(Connection con, String mySql){
         try {
@@ -69,4 +82,5 @@ public class SqlClass {
         }
         jt.setModel(model);
     }
+    
 }
